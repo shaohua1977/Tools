@@ -118,23 +118,33 @@ Proxy:
 
 
 # 配置开始
-- name: "V2ray节点的主机测试"
-  type: vmess
-  server: v2rayssr.com
-  port: 443
-  uuid: 5b8098e0-c95d-4c74-b5d5-4a330969c8cb
-  alterId: 2
-  cipher: auto
-  tls: true
-  network: ws
-  ws-path: /v2rayssrcom/
-  Host: v2rayssr.com
 
-- name: "Trojan节点的主机测试"
-  type: trojan
-  server: www.v2rayssr.com
-  port: 443
-  password: v2rayssr.com
+#第二种配置
+# Shadowsocks + simple-obfs   配置范本
+- name: "gcv"
+  type: ss
+  server: 34.92.35.148
+  port: 14015
+  cipher: chacha20-ietf-poly1305
+  password: "SDdg7TeTtpyfypCY"
+  plugin: obfs
+  plugin-opts:                 
+    mode: http               #  大部分选择 HTTP
+    host: bing.com                  #  伪装
+
+
+#第二种配置
+# Shadowsocks + simple-obfs   配置范本
+- name: "bwg"
+  type: ss
+  server: 167.172.68.94
+  port: 845
+  cipher: aes-256-gcm
+  password: "SDdg7TeTtpyfypCY"
+  plugin: obfs
+  plugin-opts:                 
+    mode: http               #  大部分选择 HTTP
+    host: bing.com                  #  伪装
 
  
 ###############################################################配置分割线
@@ -146,8 +156,8 @@ Proxy Group:
 - name: "自动节点选择"
   type: url-test
   proxies:
-    - "V2ray节点的主机测试"
-    - "Trojan节点的主机测试"
+    - "gcv"
+    - "bwg"
   url: 'http://www.gstatic.com/generate_204'
   interval: 300
 
@@ -156,8 +166,8 @@ Proxy Group:
   type: select
   proxies:
     - "自动节点选择"
-    - "V2ray节点的主机测试"
-    - "Trojan节点的主机测试"
+    - "gcv"
+    - "bwg"
 # 白名单模式 PROXY，黑名单模式 DIRECT
 - name: "Final"
   type: select
@@ -175,15 +185,15 @@ Proxy Group:
   type: select
   proxies:
     - "PROXY"
-    - "V2ray节点的主机测试"
-    - "Trojan节点的主机测试"
+    - "gcv"
+    - "bwg"
 # 大陆流媒体面向港澳台限定服务
 - name: "HKMTMedia"
   type: select
   proxies:
     - "DIRECT"
-    - "V2ray节点的主机测试"
-    - "Trojan节点的主机测试"
+    - "gcv"
+    - "bwg"
 # 运营商及声名狼藉网站劫持
 - name: "Hijacking"
   type: select
