@@ -118,8 +118,6 @@ Proxy:
 
 
 # 配置开始
-
-#第二种配置
 # Shadowsocks + simple-obfs   配置范本
 - name: "gcv"
   type: ss
@@ -129,13 +127,12 @@ Proxy:
   password: "SDdg7TeTtpyfypCY"
   plugin: obfs
   plugin-opts:                 
-    mode: http               #  大部分选择 HTTP
-    host: bing.com                  #  伪装
+    mode: http
+    host: bing.com
 
 
-#第二种配置
 # Shadowsocks + simple-obfs   配置范本
-- name: "bwg"
+- name: "digital ocean"
   type: ss
   server: 167.172.68.94
   port: 845
@@ -143,10 +140,25 @@ Proxy:
   password: "SDdg7TeTtpyfypCY"
   plugin: obfs
   plugin-opts:                 
-    mode: http               #  大部分选择 HTTP
-    host: bing.com                  #  伪装
+    mode: http
+    host: bing.com
 
- 
+
+- name: "racknerd"
+  type: ss
+  server: 96.45.167.239
+  port: 60802
+  cipher: chacha20-ietf-poly1305
+  password: "HhfvZ5&Ym4@o"
+
+
+- name: "banwagong"
+  type: ss
+  server: 97.64.109.196
+  port: "52361"
+  cipher: chacha20-ietf-poly1305
+  password: gU^P1LXMw74#
+
 ###############################################################配置分割线
 
 # 代理组策略
@@ -157,7 +169,9 @@ Proxy Group:
   type: url-test
   proxies:
     - "gcv"
-    - "bwg"
+    - "digital ocean"
+    - "racknerd"
+    - "banwagong"
   url: 'http://www.gstatic.com/generate_204'
   interval: 300
 
@@ -167,7 +181,9 @@ Proxy Group:
   proxies:
     - "自动节点选择"
     - "gcv"
-    - "bwg"
+    - "digital ocean"
+    - "racknerd"
+    - "banwagong"
 # 白名单模式 PROXY，黑名单模式 DIRECT
 - name: "Final"
   type: select
@@ -186,14 +202,18 @@ Proxy Group:
   proxies:
     - "PROXY"
     - "gcv"
-    - "bwg"
+    - "digital ocean"
+    - "racknerd"
+    - "banwagong"
 # 大陆流媒体面向港澳台限定服务
 - name: "HKMTMedia"
   type: select
   proxies:
     - "DIRECT"
     - "gcv"
-    - "bwg"
+    - "digital ocean"
+    - "racknerd"
+    - "banwagong"
 # 运营商及声名狼藉网站劫持
 - name: "Hijacking"
   type: select
